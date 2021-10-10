@@ -17,7 +17,12 @@ public class Interfaz extends JFrame {
 
 	private JPanel contentPane;
 	// asociaciones con paneles lineas 1,2 y3
-	private PanelLinea1 panelLinea1;
+	private PanelLinea panelLinea1;
+	private PanelLinea panelLinea2;
+	private PanelLinea panelLinea3;
+	private PanelLineaCelular panelLineaCelular;
+	private PanelTotales panelTotales;
+	private PanelReiniciar panelReiniciar;
 	private Empresa empresa;
 	
 
@@ -49,8 +54,19 @@ public class Interfaz extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(2, 3, 5, 5));
 		
-		panelLinea1 = new PanelLinea1(this);
+		panelLinea1 = new PanelLinea(255,204,0,"1");
 		contentPane.add(panelLinea1);
+		panelLinea2 = new PanelLinea(0,212,37,"2");
+		contentPane.add(panelLinea2);
+		panelLinea3 = new PanelLinea(0,111,255,"3");
+		contentPane.add(panelLinea3);
+		panelLineaCelular = new PanelLineaCelular(this);
+		contentPane.add(panelLineaCelular);
+		panelTotales = new PanelTotales();
+		contentPane.add(panelTotales);
+		panelReiniciar = new PanelReiniciar();
+		contentPane.add(panelReiniciar);
+		
 	}
 	
 	public void agregarLlamada(int numeroLinea, JTextField txtMinutosLlamadas, JCheckBox chckLocal, JCheckBox chckLargaDistancia,  JCheckBox chckCelular) {
@@ -92,11 +108,13 @@ public class Interfaz extends JFrame {
 			chckCelular.setSelected(false);
 		}
 	}
+	/*
 	public void actualizar( JTextField txtMinutosLlamadas, JCheckBox chckLocal, JCheckBox chckLargaDistancia,  JCheckBox chckCelular) {
 		panelLinea1.actualizar(empresa.darLinea1());
 		txtMinutosLlamadas.setText("");
 		chckLocal.setSelected(false);
 		chckLargaDistancia.setSelected(false);
 		chckCelular.setSelected(false);
-	}
+	} 
+	*/
 }

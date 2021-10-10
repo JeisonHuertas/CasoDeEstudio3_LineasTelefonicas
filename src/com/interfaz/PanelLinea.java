@@ -4,44 +4,38 @@ import javax.swing.JPanel;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
-import java.awt.Color;
 import javax.swing.border.TitledBorder;
 
-import com.mundo.LineaTelefonica;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-public class PanelLinea1 extends JPanel {
+public class PanelLinea extends JPanel {
 	private JTextField txtValorTotalLinea;
 	private JTextField txtTotalLlamadas;
 	private JTextField txtTotalMinutos;
-	private JTextField txtMinutosLlamadas;
+	private JTextField textField_3;
 	private JCheckBox chckLocal;
 	private JCheckBox chckLargaDistancia;
 	private JCheckBox chckCelular;
-	// Asociacion con la clase Empresa
 	private Interfaz principal;
 	
-	public PanelLinea1(Interfaz principal) {
-		this();
+	public PanelLinea(Interfaz principal) {
 		this.principal = principal;
 	}
 
 	/**
 	 * Create the panel.
 	 */
-	public PanelLinea1() {
-		setBorder(new TitledBorder(null, "Linea 1", TitledBorder.CENTER, TitledBorder.ABOVE_TOP, null, Color.ORANGE));
+	public PanelLinea(int R,int G, int B,String numeroLinea) {
+		setBorder(new TitledBorder(null, "Linea " + numeroLinea, TitledBorder.CENTER, TitledBorder.ABOVE_TOP, null, new Color(R,G,B)));
 		setLayout(new GridLayout(6, 3, 5, 2));
 		
 		JLabel lblNewLabel = new JLabel("");
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Valor Total Linea");
-		lblNewLabel_1.setForeground(Color.ORANGE);
+		lblNewLabel_1.setForeground(new Color(R,G,B));
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 12));
 		add(lblNewLabel_1);
 		
@@ -54,7 +48,7 @@ public class PanelLinea1 extends JPanel {
 		add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Total Llamadas");
-		lblNewLabel_1_1.setForeground(Color.ORANGE);
+		lblNewLabel_1_1.setForeground(new Color(R,G,B));
 		lblNewLabel_1_1.setFont(new Font("Arial", Font.BOLD, 12));
 		add(lblNewLabel_1_1);
 		
@@ -67,7 +61,7 @@ public class PanelLinea1 extends JPanel {
 		add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Total Minutos");
-		lblNewLabel_1_2.setForeground(Color.ORANGE);
+		lblNewLabel_1_2.setForeground(new Color(R,G,B));
 		lblNewLabel_1_2.setFont(new Font("Arial", Font.BOLD, 12));
 		add(lblNewLabel_1_2);
 		
@@ -77,13 +71,13 @@ public class PanelLinea1 extends JPanel {
 		add(txtTotalMinutos);
 		
 		JLabel lblNewLabel_4 = new JLabel("Minutos Llamada");
-		lblNewLabel_4.setForeground(Color.ORANGE);
+		lblNewLabel_4.setForeground(new Color(R,G,B));
 		lblNewLabel_4.setFont(new Font("Arial", Font.BOLD, 12));
 		add(lblNewLabel_4);
 		
-		txtMinutosLlamadas = new JTextField();
-		txtMinutosLlamadas.setColumns(10);
-		add(txtMinutosLlamadas);
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		add(textField_3);
 		
 		JLabel lblNewLabel_5 = new JLabel("");
 		add(lblNewLabel_5);
@@ -104,31 +98,12 @@ public class PanelLinea1 extends JPanel {
 		add(lblNewLabel_6);
 		
 		JButton btnAgregarLlamada = new JButton("Agregar Llamada");
-		btnAgregarLlamada.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				principal.agregarLlamada(1, txtMinutosLlamadas, chckLocal, chckLargaDistancia, chckCelular);
-				principal.actualizar(txtMinutosLlamadas, chckLocal, chckLargaDistancia, chckCelular);
-				
-			}
-		});
-		btnAgregarLlamada.setBackground(Color.ORANGE);
 		btnAgregarLlamada.setFont(new Font("Arial", Font.BOLD, 12));
+		btnAgregarLlamada.setBackground(new Color(R,G,B));
 		add(btnAgregarLlamada);
 		
 		JLabel lblNewLabel_7 = new JLabel("");
 		add(lblNewLabel_7);
 
 	}
-	public void actualizar(LineaTelefonica linea) {
-		txtValorTotalLinea.setText(formatearValor(linea.darCostoLlamadas()));
-		txtTotalLlamadas.setText(formatearValorEntero(linea.darNumeroLlamadas()));
-		txtTotalMinutos .setText(formatearValorEntero(linea.darNumeroMinutos()));
-	}
-	private String formatearValor(double valor) {
-		return Double.toString(valor);
-	}
-	private String formatearValorEntero(int valor) {
-		return Integer.toString(valor);
-	}
-
 }
