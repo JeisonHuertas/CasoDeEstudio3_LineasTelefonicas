@@ -52,19 +52,25 @@ public class Interfaz extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(2, 3, 5, 5));
+		contentPane.setLayout(null);
 		
-		panelLinea1 = new PanelLinea(255,204,0,"1");
+		panelLinea1 = new PanelLinea(255,62,0,1);
+		panelLinea1.setBounds(5, 5, 360, 229);
 		contentPane.add(panelLinea1);
-		panelLinea2 = new PanelLinea(0,212,37,"2");
+		panelLinea2 = new PanelLinea(0,212,37,2);
+		panelLinea2.setBounds(370, 5, 360, 229);
 		contentPane.add(panelLinea2);
-		panelLinea3 = new PanelLinea(0,111,255,"3");
+		panelLinea3 = new PanelLinea(0,111,255,3);
+		panelLinea3.setBounds(735, 5, 360, 229);
 		contentPane.add(panelLinea3);
 		panelLineaCelular = new PanelLineaCelular(this);
+		panelLineaCelular.setBounds(5, 239, 440, 229);
 		contentPane.add(panelLineaCelular);
 		panelTotales = new PanelTotales();
+		panelTotales.setBounds(455, 239, 430, 229);
 		contentPane.add(panelTotales);
 		panelReiniciar = new PanelReiniciar();
+		panelReiniciar.setBounds(895, 239, 200, 229);
 		contentPane.add(panelReiniciar);
 		
 	}
@@ -107,8 +113,9 @@ public class Interfaz extends JFrame {
 			chckLargaDistancia.setSelected(false);
 			chckCelular.setSelected(false);
 		}
+		panelLinea1.actualizar(empresa.darLinea1());
 	}
-	/*
+
 	public void actualizar( JTextField txtMinutosLlamadas, JCheckBox chckLocal, JCheckBox chckLargaDistancia,  JCheckBox chckCelular) {
 		panelLinea1.actualizar(empresa.darLinea1());
 		txtMinutosLlamadas.setText("");
@@ -116,5 +123,5 @@ public class Interfaz extends JFrame {
 		chckLargaDistancia.setSelected(false);
 		chckCelular.setSelected(false);
 	} 
-	*/
+	
 }
