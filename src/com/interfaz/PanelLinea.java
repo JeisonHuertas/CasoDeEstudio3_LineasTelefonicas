@@ -3,6 +3,8 @@ package com.interfaz;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
@@ -24,18 +26,10 @@ public class PanelLinea extends JPanel {
 	private JCheckBox chckLargaDistancia;
 	private JCheckBox chckCelular;
 	private Interfaz principal;
-	private int R;
-	private int G;
-	private int B;
-	private int numeroLinea;
 	
 	public PanelLinea(Interfaz principal, int R, int G, int B, int numeroLinea) {
 		this(R,G,B,numeroLinea);
 		this.principal = principal;
-		this.R  = R;
-		this.G = G;
-		this.B = B;
-		this.numeroLinea = numeroLinea;
 	}
 	
 	/**
@@ -114,8 +108,62 @@ public class PanelLinea extends JPanel {
 		JButton btnAgregarLlamada = new JButton("Agregar Llamada");
 		btnAgregarLlamada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				principal.agregarLlamada(1, txtMinutosLlamadas, chckLocal, chckLargaDistancia, chckCelular);
-				principal.actualizar(txtMinutosLlamadas, chckLocal, chckLargaDistancia, chckCelular);
+				int minutos = 0;
+				if(txtMinutosLlamadas.getText().length()==0){
+					JOptionPane.showMessageDialog(null, "Ingrese la cantidad de minutos", "warning", JOptionPane.WARNING_MESSAGE);
+				}else {
+					 minutos = Integer.parseInt(txtMinutosLlamadas.getText());
+				}
+				
+				if (!chckLocal.isSelected() && !chckLargaDistancia.isSelected() && !chckCelular.isSelected()) {
+					JOptionPane.showMessageDialog(null, "Seleccione una opcion", "warning", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+				else if (chckLocal.isSelected() && !chckLargaDistancia.isSelected() && !chckCelular.isSelected()) {
+					if (numeroLinea == 1) {
+						principal.darEmpresa().agregarLlamadaLocalLinea1(minutos);
+						actualizar(principal.darEmpresa().darLinea1());
+					}else if (numeroLinea == 2) {
+						principal.darEmpresa().agregarLlamadaLocalLinea2(minutos);
+						actualizar(principal.darEmpresa().darLinea2());
+					}else if (numeroLinea == 3) {
+						principal.darEmpresa().agregarLlamadaLocalLinea3(minutos);
+						actualizar(principal.darEmpresa().darLinea3());
+					}
+				}
+				else if (!chckLocal.isSelected() && chckLargaDistancia.isSelected() && !chckCelular.isSelected()) {
+					if (numeroLinea == 1) {
+						principal.darEmpresa().agregarLlamadaLargaDistanciaLinea1(minutos);
+						actualizar(principal.darEmpresa().darLinea1());
+					}else if (numeroLinea == 2) {
+						principal.darEmpresa().agregarLlamadaLargaDistanciaLinea2(minutos);
+						actualizar(principal.darEmpresa().darLinea2());
+					}else if (numeroLinea == 3) {
+						principal.darEmpresa().agregarLlamadaLargaDistanciaLinea3(minutos);
+						actualizar(principal.darEmpresa().darLinea3());
+					}
+				}
+				else if (!chckLocal.isSelected() && !chckLargaDistancia.isSelected() && chckCelular.isSelected()) {
+					if (numeroLinea == 1) {
+						principal.darEmpresa().agregarLlamadaCelularLinea1(minutos);
+						actualizar(principal.darEmpresa().darLinea1());
+					}else if (numeroLinea == 2) {
+						principal.darEmpresa().agregarLlamadaCelularLinea2(minutos);
+						actualizar(principal.darEmpresa().darLinea2());
+					}else if (numeroLinea == 3) {
+						principal.darEmpresa().agregarLlamadaCelularLinea3(minutos);
+						actualizar(principal.darEmpresa().darLinea3());
+					}
+				}
+				else {
+					chckLocal.setSelected(false);
+					chckLargaDistancia.setSelected(false);
+					chckCelular.setSelected(false);
+				}
+				txtMinutosLlamadas.setText("");
+				chckLocal.setSelected(false);
+				chckLargaDistancia.setSelected(false);
+				chckCelular.setSelected(false);
 			}
 		});
 		btnAgregarLlamada.setFont(new Font("Arial", Font.BOLD, 12));

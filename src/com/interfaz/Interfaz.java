@@ -16,11 +16,12 @@ import java.awt.GridLayout;
 public class Interfaz extends JFrame {
 
 	private JPanel contentPane;
-	// asociaciones con paneles lineas 1,2 y3
+	// asociaciones con panelLineas
 	private PanelLinea panelLinea1;
 	private PanelLinea panelLinea2;
 	private PanelLinea panelLinea3;
 	private PanelLineaCelular panelLineaCelular;
+	private PanelLinea panelLinea;
 	private PanelTotales panelTotales;
 	private PanelReiniciar panelReiniciar;
 	private Empresa empresa;
@@ -53,14 +54,15 @@ public class Interfaz extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setLocationRelativeTo(null);
 		
-		panelLinea1 = new PanelLinea(255,62,0,1);
+		panelLinea1 = new PanelLinea(this,255,62,0,1);
 		panelLinea1.setBounds(5, 5, 360, 229);
 		contentPane.add(panelLinea1);
-		panelLinea2 = new PanelLinea(0,212,37,2);
+		panelLinea2 = new PanelLinea(this,0,212,37,2);
 		panelLinea2.setBounds(370, 5, 360, 229);
 		contentPane.add(panelLinea2);
-		panelLinea3 = new PanelLinea(0,111,255,3);
+		panelLinea3 = new PanelLinea(this,0,111,255,3);
 		panelLinea3.setBounds(735, 5, 360, 229);
 		contentPane.add(panelLinea3);
 		panelLineaCelular = new PanelLineaCelular(this);
@@ -74,54 +76,11 @@ public class Interfaz extends JFrame {
 		contentPane.add(panelReiniciar);
 		
 	}
-	
-	public void agregarLlamada(int numeroLinea, JTextField txtMinutosLlamadas, JCheckBox chckLocal, JCheckBox chckLargaDistancia,  JCheckBox chckCelular) {
-		int minutos = Integer.parseInt(txtMinutosLlamadas.getText());
+	public void agregarLlamada(int numeroLinea) {
 		
-		if (!chckLocal.isSelected() && !chckLargaDistancia.isSelected() && !chckCelular.isSelected()) {
-			return;
-		}
-		else if (chckLocal.isSelected() && !chckLargaDistancia.isSelected() && !chckCelular.isSelected()) {
-			if (numeroLinea == 1) {
-				empresa.agregarLlamadaLocalLinea1(minutos);
-			}else if (numeroLinea == 2) {
-				empresa.agregarLlamadaLocalLinea2(minutos);
-			}else if (numeroLinea == 3) {
-				empresa.agregarLlamadaLocalLinea3(minutos);
-			}
-		}
-		else if (!chckLocal.isSelected() && chckLargaDistancia.isSelected() && !chckCelular.isSelected()) {
-			if (numeroLinea == 1) {
-				empresa.agregarLlamadaLargaDistanciaLinea1(minutos);
-			}else if (numeroLinea == 2) {
-				empresa.agregarLlamadaLargaDistanciaLinea2(minutos);
-			}else if (numeroLinea == 3) {
-				empresa.agregarLlamadaLargaDistanciaLinea3(minutos);
-			}
-		}
-		else if (!chckLocal.isSelected() && !chckLargaDistancia.isSelected() && chckCelular.isSelected()) {
-			if (numeroLinea == 1) {
-				empresa.agregarLlamadaCelularLinea1(minutos);
-			}else if (numeroLinea == 2) {
-				empresa.agregarLlamadaCelularLinea2(minutos);
-			}else if (numeroLinea == 3) {
-				empresa.agregarLlamadaCelularLinea3(minutos);
-			}
-		}
-		else {
-			chckLocal.setSelected(false);
-			chckLargaDistancia.setSelected(false);
-			chckCelular.setSelected(false);
-		}
-		panelLinea1.actualizar(empresa.darLinea1());
 	}
-
-	public void actualizar( JTextField txtMinutosLlamadas, JCheckBox chckLocal, JCheckBox chckLargaDistancia,  JCheckBox chckCelular) {
-		panelLinea1.actualizar(empresa.darLinea1());
-		txtMinutosLlamadas.setText("");
-		chckLocal.setSelected(false);
-		chckLargaDistancia.setSelected(false);
-		chckCelular.setSelected(false);
-	} 
+	public Empresa darEmpresa() {
+		return empresa;
+	}
 	
 }
