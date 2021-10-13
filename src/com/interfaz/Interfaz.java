@@ -79,5 +79,7 @@ public class Interfaz extends JFrame {
 	public Empresa darEmpresa() {
 		return empresa;
 	}
-	
+	public void actualizarTotales() {
+		panelTotales.actualizar(empresa);
+	}
 }

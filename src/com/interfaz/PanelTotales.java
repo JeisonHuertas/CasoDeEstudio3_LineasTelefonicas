@@ -2,8 +2,13 @@ package com.interfaz;
 
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+
+import com.mundo.Empresa;
+
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.text.DecimalFormat;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -63,5 +68,19 @@ public class PanelTotales extends JPanel {
 		txtCostoPromedioMinuto.setColumns(10);
 
 	}
-
+	public void actualizar(Empresa empresa) {
+		 DecimalFormat df = new DecimalFormat("#.000");
+		double valorTotal = empresa.darTotalCostoLlamadasDesdeLineasAlternativas() + empresa.darTotalCostoLlamadasDesdeLineasNoAlternativas();
+		int totalMinutos = empresa.darTotalMinutosDesdeLineasAlternativas() + empresa.darTotalMinutosDesdeLineasNoAlternativas();
+		txtValorTotal.setText(formatearValor(valorTotal));
+		txtTotalLlamadas.setText(formatearValorEntero(empresa.darTotalNumeroLlamadasDesdeLineasAlternativas() + empresa.darTotalNumeroLlamadasDesdeLineasNoAlternativas()));
+		txtTotalMinutos.setText(formatearValorEntero(totalMinutos));
+		txtCostoPromedioMinuto.setText(df.format( valorTotal / totalMinutos));
+	}
+	private String formatearValor(double valor) {
+		return Double.toString(valor);
+	}
+	private String formatearValorEntero(int valor) {
+		return Integer.toString(valor);
+	}
 }

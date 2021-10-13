@@ -27,6 +27,9 @@ public class PanelLinea extends JPanel {
 	private JCheckBox chckCelular;
 	private Interfaz principal;
 	
+	/**
+	 * @wbp.parser.constructor
+	 */
 	public PanelLinea(Interfaz principal, int R, int G, int B, int numeroLinea) {
 		this(R,G,B,numeroLinea);
 		this.principal = principal;
@@ -160,10 +163,6 @@ public class PanelLinea extends JPanel {
 					chckLargaDistancia.setSelected(false);
 					chckCelular.setSelected(false);
 				}
-				txtMinutosLlamadas.setText("");
-				chckLocal.setSelected(false);
-				chckLargaDistancia.setSelected(false);
-				chckCelular.setSelected(false);
 			}
 		});
 		btnAgregarLlamada.setFont(new Font("Arial", Font.BOLD, 12));
@@ -178,6 +177,7 @@ public class PanelLinea extends JPanel {
 		txtValorTotalLinea.setText(formatearValor(linea.darCostoLlamadas()));
 		txtTotalLlamadas.setText(formatearValorEntero(linea.darNumeroLlamadas()));
 		txtTotalMinutos .setText(formatearValorEntero(linea.darNumeroMinutos()));
+		principal.actualizarTotales();
 	}
 	private String formatearValor(double valor) {
 		return Double.toString(valor);

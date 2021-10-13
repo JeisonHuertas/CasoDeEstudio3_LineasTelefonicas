@@ -158,6 +158,7 @@ public class PanelLineaCelular extends JPanel {
 		 DecimalFormat df = new DecimalFormat("#.000");
 		 String cPromedio = df.format(principal.darEmpresa().darCostoPromedioMinutosDesdeLineasAlternativas());
 		txtCostoPromedio.setText(cPromedio);
+		principal.actualizarTotales();
 	}
 	private String formatearValor(double valor) {
 		return Double.toString(valor);
