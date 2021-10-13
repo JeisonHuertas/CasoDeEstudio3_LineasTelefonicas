@@ -9,6 +9,7 @@ public class LineaTelefonica {
 		this.numeroLlamadas = 0;
 		this.numeroMinutos = 0;
 		this.costoLlamadas = 0;
+		
 	}
 	public void reiniciar() {
 		this.numeroLlamadas = 0;
@@ -25,7 +26,7 @@ public class LineaTelefonica {
 		return numeroMinutos;
 	}
 	public void modificarCostoLlamada(double pCostoLlamadas) {
-		this.costoLlamadas = pCostoLlamadas;
+		this.costoLlamadas += pCostoLlamadas;
 	}
 	public void agregarLlamadaLocal(int minutos) {
 		this.costoLlamadas += minutos*35;

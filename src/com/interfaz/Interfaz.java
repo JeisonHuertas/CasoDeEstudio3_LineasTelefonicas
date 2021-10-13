@@ -20,10 +20,9 @@ public class Interfaz extends JFrame {
 	private PanelLinea panelLinea1;
 	private PanelLinea panelLinea2;
 	private PanelLinea panelLinea3;
-	private PanelLineaCelular panelLineaCelular;
-	private PanelLinea panelLinea;
 	private PanelTotales panelTotales;
 	private PanelReiniciar panelReiniciar;
+	private PanelLineaCelular panelLineaCelular;
 	private Empresa empresa;
 	
 
@@ -48,6 +47,7 @@ public class Interfaz extends JFrame {
 	 */
 	public Interfaz() {
 		empresa = new Empresa();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1116, 512);
 		contentPane = new JPanel();
@@ -74,9 +74,6 @@ public class Interfaz extends JFrame {
 		panelReiniciar = new PanelReiniciar();
 		panelReiniciar.setBounds(895, 239, 200, 229);
 		contentPane.add(panelReiniciar);
-		
-	}
-	public void agregarLlamada(int numeroLinea) {
 		
 	}
 	public Empresa darEmpresa() {

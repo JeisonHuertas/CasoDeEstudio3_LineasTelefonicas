@@ -28,11 +28,15 @@ public class LineaCelular extends LineaTelefonica{
 		this.numeroMinutosLocal += minutos;
 		this.numeroMinutos += minutos;
 		this.numeroLlamadas += 1;
+		this.saldoDisponibleLocal -= minutos*20;
+		modificarCostoLlamada(minutos*20);
+		
 	}
 	public void agregarLlamadaCelular(int minutos) {
 		this.numeroMinutosCelular += minutos;
 		this.numeroMinutos += minutos;
 		this.numeroLlamadas += 1;
+		modificarCostoLlamada(minutos*10);
+		
 	}
-	
 }

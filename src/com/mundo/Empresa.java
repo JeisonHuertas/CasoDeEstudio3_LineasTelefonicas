@@ -1,5 +1,7 @@
 package com.mundo;
 
+import javax.swing.JOptionPane;
+
 public class Empresa {
 	private LineaTelefonica linea1;
 	private LineaTelefonica linea2;
@@ -35,8 +37,13 @@ public class Empresa {
 		linea3.agregarLlamadaLocal(minutos);
 	}
 	public boolean agregarLlamadaLocalLineaCelular1(int minutos) {
-		lineaCelular1.agregarLlamadaLocal(minutos);
-		return true;
+		if (lineaCelular1.darSaldoDisponibleLocal() < minutos*20) {
+			JOptionPane.showMessageDialog(null, "Saldo insuficiente para realizar la llamada", "warning", JOptionPane.WARNING_MESSAGE);
+			return false;
+		}else {
+			lineaCelular1.agregarLlamadaLocal(minutos);
+			return true;
+		}
 	}
 	public void agregarLlamadaLargaDistanciaLinea1(int minutos) {
 		linea1.agregarLlamadaLargaDistancia(minutos);
@@ -69,7 +76,7 @@ public class Empresa {
 		return linea1.darNumeroMinutos() + linea2.darNumeroMinutos() + linea3.darNumeroMinutos();
 	}
 	public int darTotalMinutosDesdeLineasAlternativas() {
-		return lineaCelular1.darNumeroMinutos();
+		return lineaCelular1.darNumeroMinutosLocal() + lineaCelular1.darNumeroMinutosCelular();
 	}
 	public double darTotalCostoLlamadasDesdeLineasNoAlternativas() {
 		return linea1.darCostoLlamadas() + linea2.darCostoLlamadas() + linea3.darCostoLlamadas();
