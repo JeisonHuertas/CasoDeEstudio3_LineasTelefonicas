@@ -71,7 +71,7 @@ public class Interfaz extends JFrame {
 		panelTotales = new PanelTotales();
 		panelTotales.setBounds(455, 239, 430, 229);
 		contentPane.add(panelTotales);
-		panelReiniciar = new PanelReiniciar();
+		panelReiniciar = new PanelReiniciar(this);
 		panelReiniciar.setBounds(895, 239, 200, 229);
 		contentPane.add(panelReiniciar);
 		
@@ -81,5 +81,18 @@ public class Interfaz extends JFrame {
 	}
 	public void actualizarTotales() {
 		panelTotales.actualizar(empresa);
+	}
+	public void reiniciarLineasAlternativas() {
+		empresa.reiniciarLineasAlternativas();
+		panelLineaCelular.actualizar(darEmpresa().darLineaCelular());
+		actualizarTotales();
+		
+	}
+	public void reiniciarLineasNoAlternativas() {
+		empresa.reiniciarLineasNoAlternativas();
+		panelLinea1.actualizar(darEmpresa().darLinea1());
+		panelLinea2.actualizar(darEmpresa().darLinea2());
+		panelLinea3.actualizar(darEmpresa().darLinea3());
+		actualizarTotales();
 	}
 }

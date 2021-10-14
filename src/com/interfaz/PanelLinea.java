@@ -159,6 +159,7 @@ public class PanelLinea extends JPanel {
 					}
 				}
 				else {
+					JOptionPane.showMessageDialog(null, "Solo seleccione una opcion", "warning", JOptionPane.WARNING_MESSAGE);
 					chckLocal.setSelected(false);
 					chckLargaDistancia.setSelected(false);
 					chckCelular.setSelected(false);

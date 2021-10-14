@@ -12,6 +12,12 @@ public class LineaCelular extends LineaTelefonica{
 		this.numeroLlamadas = 0;
 		this.numeroMinutos = 0;
 	}
+	public void reiniciar() {
+		super.reiniciar();
+		this.numeroMinutosLocal = 0;
+		this.numeroMinutosCelular = 0;
+		this.saldoDisponibleLocal = 50000;
+	}
 	public int darNumeroMinutosLocal() {
 		return numeroMinutosLocal;
 	}

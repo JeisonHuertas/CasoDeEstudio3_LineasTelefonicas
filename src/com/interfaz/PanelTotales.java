@@ -75,7 +75,15 @@ public class PanelTotales extends JPanel {
 		txtValorTotal.setText(formatearValor(valorTotal));
 		txtTotalLlamadas.setText(formatearValorEntero(empresa.darTotalNumeroLlamadasDesdeLineasAlternativas() + empresa.darTotalNumeroLlamadasDesdeLineasNoAlternativas()));
 		txtTotalMinutos.setText(formatearValorEntero(totalMinutos));
-		txtCostoPromedioMinuto.setText(df.format( valorTotal / totalMinutos));
+		if (totalMinutos == 0) {
+			txtCostoPromedioMinuto.setForeground(Color.RED);
+			txtCostoPromedioMinuto.setFont(new Font("Arial", Font.BOLD, 14));
+			txtCostoPromedioMinuto.setText("Realize una llamada!!!");
+		}else {
+			txtCostoPromedioMinuto.setFont(new Font("Tahoma", Font.PLAIN, 11));
+			txtCostoPromedioMinuto.setForeground(Color.BLACK);
+			txtCostoPromedioMinuto.setText(df.format( valorTotal / totalMinutos));
+		}
 	}
 	private String formatearValor(double valor) {
 		return Double.toString(valor);

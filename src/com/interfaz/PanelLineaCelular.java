@@ -141,6 +141,10 @@ public class PanelLineaCelular extends JPanel {
 				}else if(!chckLocal.isSelected() && chckCelular.isSelected()) {
 					principal.darEmpresa().agregarLlamadaCelularLineaCelular1(minutos);
 					actualizar(principal.darEmpresa().darLineaCelular());
+				}else {
+					JOptionPane.showMessageDialog(null, "Solo seleccione una opcion", "warning", JOptionPane.WARNING_MESSAGE);
+					chckLocal.setSelected(false);
+					chckCelular.setSelected(false);
 				}
 				
 			}
@@ -157,7 +161,15 @@ public class PanelLineaCelular extends JPanel {
 		txtSaldoLocalDisponible.setText(formatearValor(linea.darSaldoDisponibleLocal()));
 		 DecimalFormat df = new DecimalFormat("#.000");
 		 String cPromedio = df.format(principal.darEmpresa().darCostoPromedioMinutosDesdeLineasAlternativas());
-		txtCostoPromedio.setText(cPromedio);
+		 if (principal.darEmpresa().darTotalMinutosDesdeLineasAlternativas() == 0 ) {
+			 txtCostoPromedio.setForeground(Color.RED);
+				txtCostoPromedio.setFont(new Font("Arial", Font.BOLD, 12));
+			 txtCostoPromedio.setText("Realize una llamada!!!");
+		 }else {
+			 txtCostoPromedio.setFont(new Font("Tahoma", Font.PLAIN, 11));
+			 txtCostoPromedio.setForeground(Color.BLACK);
+			 txtCostoPromedio.setText(cPromedio);
+		 }
 		principal.actualizarTotales();
 	}
 	private String formatearValor(double valor) {
