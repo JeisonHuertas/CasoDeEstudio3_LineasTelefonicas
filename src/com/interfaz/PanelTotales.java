@@ -78,7 +78,7 @@ public class PanelTotales extends JPanel {
 		if (totalMinutos == 0) {
 			txtCostoPromedioMinuto.setForeground(Color.RED);
 			txtCostoPromedioMinuto.setFont(new Font("Arial", Font.BOLD, 14));
-			txtCostoPromedioMinuto.setText("Realize una llamada!!!");
+			txtCostoPromedioMinuto.setText("Realice una llamada!!!");
 		}else {
 			txtCostoPromedioMinuto.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			txtCostoPromedioMinuto.setForeground(Color.BLACK);

@@ -84,15 +84,15 @@ public class Interfaz extends JFrame {
 	}
 	public void reiniciarLineasAlternativas() {
 		empresa.reiniciarLineasAlternativas();
-		panelLineaCelular.actualizar(darEmpresa().darLineaCelular());
+		panelLineaCelular.actualizar(empresa.darLineaCelular());
 		actualizarTotales();
 		
 	}
 	public void reiniciarLineasNoAlternativas() {
 		empresa.reiniciarLineasNoAlternativas();
-		panelLinea1.actualizar(darEmpresa().darLinea1());
-		panelLinea2.actualizar(darEmpresa().darLinea2());
-		panelLinea3.actualizar(darEmpresa().darLinea3());
+		panelLinea1.actualizar(empresa.darLinea1());
+		panelLinea2.actualizar(empresa.darLinea2());
+		panelLinea3.actualizar(empresa.darLinea3());
 		actualizarTotales();
 	}
 }

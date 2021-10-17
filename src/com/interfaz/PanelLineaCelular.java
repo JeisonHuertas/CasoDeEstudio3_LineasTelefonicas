@@ -163,8 +163,8 @@ public class PanelLineaCelular extends JPanel {
 		 String cPromedio = df.format(principal.darEmpresa().darCostoPromedioMinutosDesdeLineasAlternativas());
 		 if (principal.darEmpresa().darTotalMinutosDesdeLineasAlternativas() == 0 ) {
 			 txtCostoPromedio.setForeground(Color.RED);
-				txtCostoPromedio.setFont(new Font("Arial", Font.BOLD, 12));
-			 txtCostoPromedio.setText("Realize una llamada!!!");
+			 txtCostoPromedio.setFont(new Font("Arial", Font.BOLD, 12));
+			 txtCostoPromedio.setText("Realice una llamada!!!");
 		 }else {
 			 txtCostoPromedio.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			 txtCostoPromedio.setForeground(Color.BLACK);
